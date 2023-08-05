@@ -41,10 +41,11 @@ public class PlayerMotor : MonoBehaviour
             else
                 controller.height = Mathf.Lerp(controller.height, 2, p);
 
-            lerpCrouch = false;
-            crouchTimer = 0f;
-
-            Debug.Log("Lerp Crouching Enable");
+            if (p > 1)
+            {
+                lerpCrouch = false;
+                crouchTimer = 0f;
+            }
         }
     }
 
@@ -53,19 +54,16 @@ public class PlayerMotor : MonoBehaviour
         crouching = !crouching;
         crouchTimer = 0;
         lerpCrouch = true;
-
-        Debug.Log("Crouching Enable");
     }
 
     public void Sprint()
     {
         sprinting = !sprinting;
+
         if (sprinting)
             speed = 8;
-
         else
             speed = 5;
-        Debug.Log("Sprinting Enable");
     }
 
     public void ProcessMove(Vector2 input)
